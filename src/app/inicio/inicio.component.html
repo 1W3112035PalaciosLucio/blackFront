@@ -1,0 +1,23 @@
+<div class="contenedor">
+    <div class="video-contenedor">
+        <video [src]="videoUrl" type="video/mp4" autoplay [muted]="true" [loop]="true"></video>
+
+    </div>
+    <div class="contenido">
+        <div class="">
+            <h1> <strong> Bienvenido a BlackJack</strong> </h1>
+        </div>
+        <div>
+            <p> <strong>Proyecto de TUP UTN FRC </strong></p>
+            <p class="text-warning"> <strong> Desarrollado por Iñaki Eguia | Lucio Palacios </strong></p>
+        </div>
+        <div class="py-5">
+           <!--  <i class="bi bi-play-circle-fill" style="vertical-align:middle"(click)="Reglas"()></i> -->
+           <button class="button" style="vertical-align:middle" (click)="Reglas()"><span>Reglas</span></button>
+        </div>
+        <div>
+            <button (click)="Jugar()" class="button" style="vertical-align:middle"><span>Iniciar partida</span></button>
+        </div>
+    </div>
+
+</div>

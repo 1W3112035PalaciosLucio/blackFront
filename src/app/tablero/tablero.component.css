@@ -1,0 +1,79 @@
+.fondo {
+  height: 100%;
+  width: 100%;
+}
+
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.contenido {
+  text-align: center;
+}
+
+.imagen-contenedor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  width: 100%;
+  height: 130%;
+  overflow: hidden;
+}
+
+.reglas {
+  position: absolute;
+  text-align: justify;
+  margin: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+p {
+  color: yellow;
+  font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+h5 {
+  font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+img {
+  width: 150px;
+  height: 200px;
+}
+
+.bac {
+  background-color: rgb(35, 77, 36);
+  background-position: 100vh;
+  background: no-repeat url('/src/assets/images/fondoBJ.jpg');
+
+}
+
+/* .zoom {
+  zoom: 75%;
+} */
