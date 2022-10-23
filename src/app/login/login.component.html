@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-3 col-sm-2"></div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 bg-white mt-5 rounded-3 shadow">
+            <div class="row">
+                <div class="col-12">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <h1 class="fw-bold text-center py-4">Login</h1>
+                        <div class="mb-4 form-group">
+                            <label class="form-label">Correo electronico</label>
+                            <input type="email" class="form-control" name="email"
+                                formControlName="email" [class.red-icon]="this.loginForm.get('email')?.invalid" />
+                        </div>
+                        <div class="mb-4 form-group">
+                            <label class="form-label">Contraseña</label>
+                            <input type="text" class="form-control" name="clave"
+                                formControlName="clave"
+                                [class.red-icon]="this.loginForm.get('clave')?.invalid" />
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">Iniciar sesión</button>
+                        </div>
+                        <div class="d-grid py-2">
+                            <button type="button" class="btn btn-info"
+                                (click)="registrar()">Registrarse</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-3 col-sm-2"></div>
+    </div>
+</div>
+
