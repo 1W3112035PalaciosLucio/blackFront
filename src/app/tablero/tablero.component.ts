@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Carta } from '../Interfaces/Carta';
 import { CartasService } from '../Servicios/cartas.service';
@@ -11,13 +11,7 @@ import  Swal from "sweetalert2";
 })
 export class TableroComponent implements OnInit {
 
-  constructor(private servicio: CartasService, private route: Router, private renderer: Renderer2) {
-    renderer.setStyle(
-      document.body,
-      "background-image",
-      'url("assets/images/fondoBJ.jpg")'
-    );
-
+  constructor(private servicio: CartasService, private route: Router) {
   }
 
   partidaIniciada = true;
@@ -27,8 +21,6 @@ export class TableroComponent implements OnInit {
   puntosJugador: number = 0;
   puntosCrupier: number = 0;
   resultadoJuego = "";
-  tableroImg!: string;
-
 
   ngOnInit(): void {
   }
@@ -73,9 +65,6 @@ export class TableroComponent implements OnInit {
   }
 
 
-
-
-
   Plantarse() {
     this.cartasCrupier = this.servicio.generarCartasCrupier();
     
@@ -117,7 +106,7 @@ export class TableroComponent implements OnInit {
   }
 
   Volver() {
-    this.route.navigateByUrl("");
+    this.route.navigateByUrl("/inicio");
   }
 
   PedirCarta(cartas: Carta[]) {

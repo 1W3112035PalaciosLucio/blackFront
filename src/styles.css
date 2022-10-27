@@ -1,7 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-.p{
+body{
     font-family: 'Fira Sans Condensed', sans-serif;
 }
-.btn{
-    font-family: 'Fira Sans Condensed', sans-serif;
+.errorValidacion{
+    color: rgb(229, 58, 28);
+    font-weight: bold;
+}
+
+body {
+	background: linear-gradient(-90deg, #034e1d, #024219, #023e17, #024018);
+	background-size: 400% 400%;
+	animation: gradient 80s ease infinite;
+	height: 100vh;
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

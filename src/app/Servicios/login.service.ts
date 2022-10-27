@@ -14,7 +14,7 @@ export class LoginService {
   url = "https://localhost:5001/api/";
   jwtHelper = new JwtHelperService();
   decodedToken: any;
-  currentUser!:DetUsuario|null;
+  currentUser!: DetUsuario | null;
   constructor(private http: HttpClient) { }
 
 
@@ -22,7 +22,7 @@ export class LoginService {
     return this.http.post<DetUsuario>(`${this.url}Usuario/CrearUsuario`, dto);
   }
 
-  login(dto: Login) {
+  login(dto: Login):Observable<any> {
     console.log(dto);
     return this.http.post(`${this.url}Login/Login`, dto)
       .pipe(
@@ -37,19 +37,6 @@ export class LoginService {
         })
       );
   }
-  // postLogin(log:Login): Observable<any> {
-  //   const comando = {
-
-  //     "email": log.email,
-  //     "contrasenia": log.contrasenia
-  //   };
-
-  //   const url = this.url + "Login/Login";
-  //   const headers = { 'content-type': 'application/json' }
-  //   const body = JSON.stringify(comando);
-  //   console.log(body);
-  //   return this.http.post(url, body, { 'headers': headers })
-  // }
 
   usuarioLogueado() {
     const token = localStorage.getItem('token') ?? undefined;
