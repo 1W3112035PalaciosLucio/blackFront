@@ -69,7 +69,7 @@ export class JugadorComponent implements OnInit {
     var cartaNueva = {} as Carta;
 
     this.servicio.pedirCarta().subscribe({
-      next: (carta) => {this.cartasJugador.push(cartaNueva = new Carta(carta.id,carta.valor,carta.palo)), this.resultado.push(carta),this.cargarDetalle(this.idPartida,carta.id);},
+      next: (carta) => {this.cartasJugador.push(cartaNueva = new Carta(carta.id,carta.valor,carta.palo)), this.resultado.push(carta),this.cargarDetalle(this.idPartida,cartaNueva.id);},
       error: (error) => {console.log(error)}
     })
 
@@ -117,7 +117,8 @@ export class JugadorComponent implements OnInit {
     cartas.forEach(element => {
       var carta = new Carta(element.id,element.valor,element.palo);
       this.cartasJugador.push(carta);
-      this.cargarDetalle(this.idPartida,carta.id)
+      console.log(this.idPartida)
+      this.cargarDetalle(this.idPartida,element.id);
     });
     this.onPedirCarta.emit(this.cartasJugador);
   }

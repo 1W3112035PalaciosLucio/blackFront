@@ -45,7 +45,7 @@ export class TableroComponent implements OnInit {
   InicioPartida() {
     
     this.servicio.iniciarJuego(this.usuario.email).subscribe({
-      next: (data) => {this.idPartida = data},
+      next: (data) => {this.idPartida = data, console.log(this.idPartida)},
       error: (error) => {console.log(error)}
     })
 
