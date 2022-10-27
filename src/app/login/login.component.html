@@ -16,7 +16,7 @@
                         </div>
                         <div class="mb-4 form-group">
                             <label class="form-label">Contraseña</label>
-                            <input type="text" class="form-control" name="clave" formControlName="clave"
+                            <input type="password" class="form-control" name="clave" formControlName="clave"
                                 [class.is-invalid]="loginForm.get('clave')?.touched && loginForm.get('clave')?.invalid" />
                             <small class="errorValidacion"
                                 *ngIf="this.loginForm.get('clave')?.hasError('required') && this.loginForm.get('clave')?.touched">La
