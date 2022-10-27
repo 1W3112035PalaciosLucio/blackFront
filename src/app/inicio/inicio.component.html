@@ -7,19 +7,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
                 <li class="nav-item dropdown bg-dark ">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Configuracion
+                        Sesión
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark">
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark">     
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -36,9 +29,9 @@
         <video [src]="videoUrl" type="video/mp4" autoplay [muted]="true" [loop]="true"></video>
     </div>
 
-    <div class="contenido">
+    <div class="contenido zoom">
         <div class="">
-            <h1> <strong> Bienvenido {{usuario.nombre}}  al BlackJack</strong> </h1>
+            <h1> <strong> Bienvenido a BlackJack {{usuario.nombre}}</strong> </h1>
         </div>
         <div>
             <p> <strong>Proyecto de TUP UTN FRC </strong></p>

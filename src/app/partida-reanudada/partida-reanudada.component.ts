@@ -14,6 +14,7 @@ import { LoginService } from '../Servicios/login.service';
 })
 export class PartidaReanudadaComponent implements OnInit {
 
+  usuario = {} as Usuario;
   email:string;
   idPartida:number;
   detallePartida : DetallePartida[];
@@ -33,6 +34,7 @@ export class PartidaReanudadaComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerPartida();
     this.iniciarCrupier();
+    this.getUsuario();
   }
 
   obtenerPartida(){
@@ -61,7 +63,7 @@ export class PartidaReanudadaComponent implements OnInit {
     this.servicioC.iniciarCrupier().subscribe({
       next: (result) => {this.resultado = result}
     })
-    setTimeout(()=> {this.cargarCartasCrupier(this.resultado)},40);
+    setTimeout(()=> {this.cargarCartasCrupier(this.resultado)},90);
   }
 
   cargarCartasCrupier(cartas:any[]){
@@ -107,6 +109,7 @@ export class PartidaReanudadaComponent implements OnInit {
       error: (error) => (console.log(error))
     });
     setTimeout(()=> {this.evaluarPuntos()},40);
+    this.plantarme=false;
   }
 
   evaluarPuntos(){
@@ -158,8 +161,16 @@ export class PartidaReanudadaComponent implements OnInit {
       error: (error) => {console.log(error)}
     })
   }
+  Volver() {
+    this.route.navigateByUrl("/partidas/"+this.usuario.email);
+  }
 
-
+  getUsuario(){
+    this.servicioL.getUserByEmail(this.email).subscribe({
+      next : (data) => {this.usuario = data,console.log(this.usuario)},
+      error: (error) => {console.log(error)}
+    })
+  }
 }
 
 

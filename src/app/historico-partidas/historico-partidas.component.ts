@@ -41,4 +41,8 @@ export class HistoricoPartidasComponent implements OnInit {
   ReanudarPartida(id:number){
     this.router.navigateByUrl("/reanudar/"+id+"/"+this.usuario.email)
   }
+
+  Volver(){
+    this.router.navigateByUrl("/inicio/"+this.usuario.email);
+  }
 }

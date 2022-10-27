@@ -1,39 +1,52 @@
-<div class="container-fluid">
-    <div class="container py-3">
-        <div class="bac">
-            <div class="row ">
+<div class="zoom">
+    <div class="container-fluid bg-dark py-4">
+        <div class="container text-white">
+            <h3 class="text-center">PARTIDA REANUDADA</h3>
+            <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container text-center">
-                    <h1 ><code
-                            style="color: rgb(251, 255, 14); font-family: 'Fira Sans Condensed', sans-serif; "></code>
-                    </h1>
+                    <button class="btn btn-danger" (click)="Volver()"><b>Volver
+                        </b></button>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <div >
-                    <p class="text-justify text-white"><b>CARTAS DEL JUGADOR </b></p>
-                    <br>
-                    <p>{{resultadoJuego}}</p>
-                    <p class="text-justify"> <b> Puntos del Jugador: {{puntosJugador}}</b></p>
-                    <div class="row">
-                        <img class="col-xl-2 col-lg-2 col-md-3 col-sm-4  py-1" *ngFor="let carta of cartasJugador"
-                            src="{{carta.toString()}}" alt="">
-                    </div>
-                    <br>
-                    <p class="text-justify  text-white"><b>CARTAS DEL CROUPIER</b></p>
-                    <p class="text-justify"><b>Puntos del Crupier: {{puntosCrupier}}</b></p>
-                    <div class="row"> 
-                        <img class="col-xl-2 col-lg-2 col-md-3 col-sm-4  py-1" *ngFor="let carta of cartasCrupier"
-                        src="{{carta.toString()}}" alt=""> 
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 py-1">
-                <button class="btn btn-info" (click)="pedirCarta()" *ngIf="puntosJugador < 21 && plantarme">Pedir carta</button>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 py-1">
-                <button class="btn btn-danger" (click)="plantarse()">Plantarme</button>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="container py-3">
+            <div class="bac">
+                <div class="row ">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container text-center">
+                        <h1><code
+                                style="color: rgb(251, 255, 14); font-family: 'Fira Sans Condensed', sans-serif; ">   <p>{{resultadoJuego}}</p></code>
+                        </h1>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div>
+                        <p class="text-justify text-white"><b>CARTAS DEL JUGADOR </b></p>
+                        <p class="text-justify"> <b> Puntos del Jugador: {{puntosJugador}}</b></p>
+                        <div class="row">
+                            <img class="col-xl-2 col-lg-2 col-md-3 col-sm-4  py-1" *ngFor="let carta of cartasJugador"
+                                src="{{carta.toString()}}" alt="">
+                        </div>
+                        <br>
+                        <p class="text-justify  text-white"><b>CARTAS DEL CROUPIER</b></p>
+                        <p class="text-justify"><b>Puntos del Crupier: {{puntosCrupier}}</b></p>
+                        <div class="row">
+                            <img class="col-xl-2 col-lg-2 col-md-3 col-sm-4  py-1" *ngFor="let carta of cartasCrupier"
+                                src="{{carta.toString()}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 py-1 d-flex justify-content-center">
+                    <button class="btn btn-info" (click)="pedirCarta()" *ngIf="puntosJugador < 21 && plantarme">Pedir
+                        carta</button>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 py-1 d-flex justify-content-center">
+                    <button class="btn btn-danger" *ngIf="plantarme"(click)="plantarse()">Plantarme</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

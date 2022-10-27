@@ -1,26 +1,38 @@
-<div class="container py-2">
-    <div class="">
-        <h1> <strong> Jugador: {{usuario.nombre}}</strong> </h1>
+<div class="container-fluid bg-dark py-4">
+  <div class="container text-white">
+    <h3 class="text-center">HISTORIAL DE PARTIDAS</h3>
+    <div class="row ">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 container text-center py-1">
+        <button class="btn btn-danger" (click)="Volver()"><b>Volver</b></button>
+      </div>
     </div>
-    <br>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Numero de partida</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Puntos Jugador</th>
-            <th scope="col">Puntos Crupier</th>
-            <th scope="col">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let partida of partidas">
-            <td scope="row">  {{partida.id}} </td>
-            <td>  {{partida.fecha | date}} </td>
-            <td> {{partida.puntosJugador}} </td>
-            <td>{{partida.puntosCrupier}}</td>
-            <td>   <button *ngIf="partida.activo" (click) = "ReanudarPartida(partida.id)">Reanudar</button> </td>
-          </tr>
-        </tbody>
-      </table>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="">
+    <h1 class="text-white">Jugador: <strong class="text-warning"> {{usuario.nombre}} {{usuario.apellido}}</strong> </h1>
+  </div>
+  <br>
+  <table class="table bg-dark text-white rounded">
+    <thead>
+      <tr class="text-warning">
+        <th scope="col">Numero de partida</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Puntos Jugador</th>
+        <th scope="col">Puntos Crupier</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let partida of partidas">
+        <td scope="row"> {{partida.id}} </td>
+        <td> {{partida.fecha | date}} </td>
+        <td> {{partida.puntosJugador}} </td>
+        <td>{{partida.puntosCrupier}}</td>
+        <td> <button class="btn btn-success" *ngIf="partida.activo"
+            (click)="ReanudarPartida(partida.id)">Reanudar</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

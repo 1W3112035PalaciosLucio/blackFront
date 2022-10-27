@@ -60,9 +60,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   mensajeError(errorMessage: string, title: string): void {
     Swal.fire({
       icon: 'error',
-      title: title,color:'#f8f9fa',
+      title: title,color:'#343a40',
       text: errorMessage,
-      background:'linear-gradient(#343a40,#212529)',
       confirmButtonColor:'#dc3545'
     
     });
@@ -71,9 +70,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   mensajeExitoso(title: string, text: string): void {
     Swal.fire({
       icon: 'success',
-      title: title,color:'#f8f9fa',
+      title: title,color:'#343a40',
       text: text,
-      background:'linear-gradient(#343a40,#212529)',
       confirmButtonColor:'#198754',
       timer: 5000
     });

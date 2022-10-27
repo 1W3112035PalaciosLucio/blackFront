@@ -41,16 +41,15 @@ export class InicioComponent implements OnInit {
   }
 
   Reglas() {
-    this.router.navigateByUrl("/reglas")
+    this.router.navigateByUrl("/reglas/"+this.usuario.email)
   }
 
   Desloguear() {
     if (this.usuarioLog()) {
       Swal.fire({
         icon: 'success',
-        title: 'Hasta la proxima', color: '#f8f9fa',
+        title: 'Hasta la proxima', color: '#343a40',
         text: 'Sesión cerrada correctamente',
-        background: 'linear-gradient(#343a40,#212529)',
         confirmButtonColor: '#198754',
         timer: 6000
       }).then(() => {

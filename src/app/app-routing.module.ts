@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: "reanudar/:id/:email", component:PartidaReanudadaComponent},
   { path: "inicio/:email", component: InicioComponent, canActivate: [GuardGuard] },
   { path: "tablero/:email", component: TableroComponent, canActivate: [GuardGuard] },
-  { path: "reglas", component: ReglasComponent, canActivate: [GuardGuard] },
+  { path: "reglas/:email", component: ReglasComponent, canActivate: [GuardGuard] },
   { path: "registro", component: RegistroComponent },
   { path: "login", component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

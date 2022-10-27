@@ -52,8 +52,8 @@ export class TableroComponent implements OnInit {
     this.servicio.iniciarCrupier().subscribe({
       next: (result) => {this.resultado = result}
     })
-    setTimeout(()=> {this.cargarCartas(this.resultado)},40);
-    setTimeout(()=> {this.calcularPuntos(false)},40);
+    setTimeout(()=> {this.cargarCartas(this.resultado)},90);
+    setTimeout(()=> {this.calcularPuntos(false)},90);
 
     this.partidaIniciada = false;
   }
