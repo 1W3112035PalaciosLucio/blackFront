@@ -1,9 +1,11 @@
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Carta } from '../Interfaces/Carta';
 import { CartasService } from '../Servicios/cartas.service';
 import  Swal from "sweetalert2";
 import { tick } from '@angular/core/testing';
+import { Usuario } from '../Interfaces/Usuario';
+import { LoginService } from '../Servicios/login.service';
 
 @Component({
   selector: 'app-tablero',
@@ -12,9 +14,13 @@ import { tick } from '@angular/core/testing';
 })
 export class TableroComponent implements OnInit {
 
-  constructor(private servicio: CartasService, private route: Router) {
+  constructor(private servicio: CartasService, private route: Router, private router:ActivatedRoute, private api:LoginService) {
+    this.email = router.snapshot.params["email"];
+    this.getUsuario();
   }
 
+  usuario = {} as Usuario;
+  email:string ="";
   partidaIniciada = true;
   resultado: Carta[]  = []
   cartasJugador: Carta[] = [];
@@ -29,20 +35,27 @@ export class TableroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getUsuario(){
+    this.api.getUserByEmail(this.email).subscribe({
+      next : (data) => {this.usuario = data,console.log(this.usuario)},
+      error: (error) => {console.log(error)}
+    })
+  }
+
   InicioPartida() {
     
-    /**this.servicio.iniciarJuego("string").subscribe({
+    this.servicio.iniciarJuego(this.usuario.email).subscribe({
       next: (data) => {this.idPartida = data},
       error: (error) => {console.log(error)}
-    })**/
+    })
 
     this.servicio.iniciarCrupier().subscribe({
       next: (result) => {this.resultado = result}
     })
-    setTimeout(()=> {this.cargarCartas(this.resultado)},10);
-    setTimeout(()=> {this.calcularPuntos(false)},10);
+    setTimeout(()=> {this.cargarCartas(this.resultado)},40);
+    setTimeout(()=> {this.calcularPuntos(false)},40);
 
-    //this.cargarDetalle(1,1);
+
     this.partidaIniciada = false;
   }
 
@@ -74,12 +87,13 @@ export class TableroComponent implements OnInit {
       next : (data) => {this.cartasCrupier.push(cartaNueva = new Carta(data.id,data.valor,data.palo)), this.calcularPuntos(cartaNueva.valor)},
       error: (error) => (console.log(error))
     });
-    setTimeout(()=> {this.evaluarPuntos()},10);
+    setTimeout(()=> {this.evaluarPuntos()},40);
+    setTimeout(()=> {this.FinalizarPartida()},40);
   }
 
-  cargarDetalle(idPartida:number,idCarta:number){
-    this.servicio.agregarDetalle(idPartida,idCarta).subscribe({
-      next: (data) => {console.log(data)},
+  FinalizarPartida(){
+    this.servicio.terminarPartida(this.idPartida,this.puntosJugador,this.puntosCrupier).subscribe({
+      next: (resultado) => {console.log("Partida Finalizada")},
       error: (error) => {console.log(error)}
     })
   }
@@ -110,7 +124,7 @@ export class TableroComponent implements OnInit {
     }
   }
 
-
+  
 
   Reiniciar() {
     this.partidaIniciada = true;
@@ -126,12 +140,11 @@ export class TableroComponent implements OnInit {
   }
 
   Volver() {
-    this.route.navigateByUrl("/inicio");
+    this.route.navigateByUrl("/inicio/"+this.usuario.email);
   }
 
   PedirCarta(cartas: Carta[]) {
     this.cartasJugador = cartas;
-
   }
 }
 

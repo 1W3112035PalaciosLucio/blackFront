@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   public url = "https://localhost:7092/api/Login/PostLogin";
   log = {} as Login;
+  id : number = 0;
+  email:string = "";
 
   constructor(private formBuilder: FormBuilder, private router: Router, private api: LoginService, private http: HttpClient) {
     this.crearForm();
@@ -37,13 +39,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(): void {
-    this.subscription.add(
+   /** this.subscription.add(
       this.api.login(this.loginForm.value).subscribe(next => {
         this.mensajeExitoso("Bienvenido", "Login exitoso!");
-        this.router.navigateByUrl("/inicio")
+        this.router.navigateByUrl("/inicio/"+)
       }, error => {
         this.mensajeError('Error durante el logueo:' + error.message, "Error");
       })
+    )
+    **/
+
+    this.subscription.add(
+      this.api.login(this.loginForm.value).subscribe({
+        next : (resultado) => { this.mensajeExitoso("Bienvenido", "Login exitoso!"),this.router.navigateByUrl("/inicio/"+this.email)},
+        error: (error) => {this.mensajeError('Error durante el logueo:' + error.message, "Error");}
+      }),
     )
   }
 

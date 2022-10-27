@@ -1,0 +1,26 @@
+<div class="container py-2">
+    <div class="">
+        <h1> <strong> Jugador: {{usuario.nombre}}</strong> </h1>
+    </div>
+    <br>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Numero de partida</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Puntos Jugador</th>
+            <th scope="col">Puntos Crupier</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let partida of partidas">
+            <td scope="row">  {{partida.id}} </td>
+            <td>  {{partida.fecha}} </td>
+            <td> {{partida.puntosJugador}} </td>
+            <td>{{partida.puntosCrupier}}</td>
+            <td>   <button *ngIf="partida.activo">Reanudar</button> </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

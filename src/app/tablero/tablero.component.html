@@ -2,7 +2,7 @@
 <div class="zoom">
     <div class="container-fluid bg-dark py-4">
         <div class="container text-white">
-            <h3 class="text-center">BIENVENIDO A LA PARTIDA</h3>
+            <h3 class="text-center">BIENVENIDO A LA PARTIDA {{usuario.nombre | uppercase}}</h3>
             <div class="row ">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 container text-center py-1">
                     <button *ngIf="partidaIniciada" class="btn btn-success" (click)="InicioPartida()"><b>Iniciar
@@ -48,7 +48,8 @@
                         </div>
                         <div class="row py-3 container">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center py-3">
-                                <app-jugador (onPedirCarta)="PedirCarta($event)" (onPuntosjugador)="obtenerPuntosJugador($event)" (onPLantarse)="Plantarse()"></app-jugador>
+                                <app-jugador [idPartida]="idPartida" (onPedirCarta)="PedirCarta($event)" (onPuntosjugador)="obtenerPuntosJugador($event)" (onPLantarse)="Plantarse()"></app-jugador>
+                                <!-- <app-jugador  (onPedirCarta)="PedirCarta($event)" (onPuntosjugador)="obtenerPuntosJugador($event)" (onPLantarse)="Plantarse()"></app-jugador>-->
                                 <!--Componente hijo-->
                             </div>
                         </div>

@@ -21,6 +21,7 @@ export class JugadorComponent implements OnInit {
   puntosJugador = 0;
   plantarme =true;
 
+  @Input() idPartida:number;
   @Output() onPedirCarta = new EventEmitter<Carta[]>();
   @Output() onPLantarse = new EventEmitter();
   @Output() onPuntosjugador =  new EventEmitter();
@@ -41,8 +42,8 @@ export class JugadorComponent implements OnInit {
       error: (error) => {console.log(error)}
     })
 
-    setTimeout(()=> {this.cargarCartas(this.resultado)},20);
-    setTimeout(()=> {this.calcularPuntos(false)},20);
+    setTimeout(()=> {this.cargarCartas(this.resultado)},40);
+    setTimeout(()=> {this.calcularPuntos(false)},40);
   }
 
   async validarAs(carta:Carta){
@@ -64,10 +65,11 @@ export class JugadorComponent implements OnInit {
     var cartaNueva = {} as Carta;
 
     this.servicio.pedirCarta().subscribe({
-      next: (carta) => {this.cartasJugador.push(cartaNueva = new Carta(carta.id,carta.valor,carta.palo)), this.resultado.push(carta)},
+      next: (carta) => {this.cartasJugador.push(cartaNueva = new Carta(carta.id,carta.valor,carta.palo)), this.resultado.push(carta),this.cargarDetalle(this.idPartida,carta.id);},
       error: (error) => {console.log(error)}
     })
-    setTimeout(()=> {this.calcularPuntos(true)},20);
+
+    setTimeout(()=> {this.calcularPuntos(true)},40);
     this.onPuntosjugador.emit(this.puntosJugador);
     this.onPedirCarta.emit(this.cartasJugador);
   }
@@ -111,7 +113,15 @@ export class JugadorComponent implements OnInit {
     cartas.forEach(element => {
       var carta = new Carta(element.id,element.valor,element.palo);
       this.cartasJugador.push(carta);
+      this.cargarDetalle(this.idPartida,element.id)
     });
     this.onPedirCarta.emit(this.cartasJugador);
+  }
+
+  cargarDetalle(idPartida:number,idCarta:number){
+    this.servicio.agregarDetalle(idPartida,idCarta).subscribe({
+      next: (data) => {console.log(data)},
+      error: (error) => {console.log(error)}
+    })
   }
 }

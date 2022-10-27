@@ -8,7 +8,7 @@
                         <h1 class="fw-bold text-center text-warning py-4">Login</h1>
                         <div class="mb-4 form-group">
                             <label class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" name="email" formControlName="email"
+                            <input type="email" [(ngModel)]="email" class="form-control" name="email" formControlName="email"
                                 [class.is-invalid]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" />
                             <small class="errorValidacion"
                                 *ngIf="this.loginForm.get('email')?.hasError('required') && this.loginForm.get('email')?.touched">El

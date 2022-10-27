@@ -24,7 +24,7 @@ export class LoginService {
 
   login(dto: Login):Observable<any> {
     console.log(dto);
-    return this.http.post("https://localhost:5001/Login/Login", dto)
+    return this.http.post(`${this.url}Login/Login`, dto)
       .pipe(
         map((response: any) => {
           const user = response;
@@ -48,6 +48,10 @@ export class LoginService {
     localStorage.removeItem('user');
     this.decodedToken = null;
     this.currentUser = null;
+  }
+
+  getUserByEmail(email:string):Observable<any>{
+    return this.http.get("https://localhost:5001/api/Usuario/getUserEmail/"+email)
   }
 }
 

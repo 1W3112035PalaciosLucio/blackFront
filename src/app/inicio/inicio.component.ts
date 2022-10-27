@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from '../Interfaces/Usuario';
 import { LoginService } from '../Servicios/login.service';
 
 @Component({
@@ -11,15 +12,31 @@ import { LoginService } from '../Servicios/login.service';
 export class InicioComponent implements OnInit {
 
   videoUrl: string;
-  constructor(private router: Router, private log: LoginService) {
+  email:string = "";
+  usuario = {} as Usuario;
+  constructor(private router: Router, private log: LoginService, private route:ActivatedRoute) {
     this.videoUrl = "https://res.cloudinary.com/dfyevp7g4/video/upload/v1665238886/blackjack/video/menuVideo.mp4"
+    this.email = route.snapshot.params["email"];
+    this.getJugador();
   }
 
+  
   ngOnInit(): void {
   }
 
   Jugar() {
-    this.router.navigateByUrl("/tablero")
+    this.router.navigateByUrl("/tablero/"+this.usuario.email)
+  }
+
+  Partidas(){
+    this.router.navigateByUrl("/partidas/"+this.usuario.email)
+  }
+
+  getJugador(){
+    this.log.getUserByEmail(this.email).subscribe({
+      next : (resultado) => {this.usuario = resultado},
+      error: (error) => {console.log(error)}
+    })
   }
 
   Reglas() {

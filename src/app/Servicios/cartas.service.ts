@@ -13,7 +13,8 @@ export class CartasService {
    }
 
   iniciarJuego(email:string):Observable<any>{
-  return this.http.post("https://localhost:5001/api/Partida/iniciarPartida",email)
+  const body = {};
+  return this.http.post("https://localhost:5001/api/Partida/iniciarPartida/"+email,body)
   }
 
   agregarDetalle(idPartida:number,idCarta:number):Observable<any>{
@@ -36,5 +37,18 @@ export class CartasService {
 
   pedirCarta():Observable<any>{
     return this.http.get("https://localhost:5001/api/Partida/pedirCarta");
+  }
+
+  terminarPartida(idPartida:number,puntosJugador:number,puntosCrupier:number):Observable<any>{
+    const body = {
+      idPartida : idPartida,
+      puntosJugador :puntosJugador,
+      puntosCrupier: puntosCrupier
+    }
+    return this.http.put("https://localhost:5001/api/Partida/finalizarJuego",body)
+  }
+
+  obtenerPartidas(id:number):Observable<any>{
+    return this.http.get("https://localhost:5001/api/Partida/obtenerPartidasUsuario/"+id);
   }
 }
