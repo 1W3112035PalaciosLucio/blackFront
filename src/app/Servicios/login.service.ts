@@ -24,7 +24,7 @@ export class LoginService {
 
   login(dto: Login):Observable<any> {
     console.log(dto);
-    return this.http.post(`${this.url}Login/Login`, dto)
+    return this.http.post("https://localhost:5001/Login/Login", dto)
       .pipe(
         map((response: any) => {
           const user = response;
