@@ -7,9 +7,11 @@ import { ReglasComponent } from './reglas/reglas.component';
 import { TableroComponent } from './tablero/tablero.component';
 import { GuardGuard } from './guards/guard.guard';
 import { HistoricoPartidasComponent } from './historico-partidas/historico-partidas.component';
+import { PartidaReanudadaComponent } from './partida-reanudada/partida-reanudada.component';
 
 const routes: Routes = [
   { path: "partidas/:email", component:HistoricoPartidasComponent},
+  { path: "reanudar/:id/:email", component:PartidaReanudadaComponent},
   { path: "inicio/:email", component: InicioComponent, canActivate: [GuardGuard] },
   { path: "tablero/:email", component: TableroComponent, canActivate: [GuardGuard] },
   { path: "reglas", component: ReglasComponent, canActivate: [GuardGuard] },

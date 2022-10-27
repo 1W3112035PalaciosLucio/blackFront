@@ -15,7 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './Servicios/login.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RegistroComponent } from './registro/registro.component';
-import { HistoricoPartidasComponent } from './historico-partidas/historico-partidas.component'
+import { HistoricoPartidasComponent } from './historico-partidas/historico-partidas.component';
+import { PartidaReanudadaComponent } from './partida-reanudada/partida-reanudada.component'
 
 
 export function tokenGetter(){
@@ -33,6 +34,7 @@ export function tokenGetter(){
     LoginComponent,
     RegistroComponent,
     HistoricoPartidasComponent,
+    PartidaReanudadaComponent,
 
   ],
   imports: [

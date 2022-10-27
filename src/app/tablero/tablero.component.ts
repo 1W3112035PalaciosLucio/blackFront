@@ -29,7 +29,7 @@ export class TableroComponent implements OnInit {
   puntosCrupier: number = 0;
   resultadoJuego = "";
 
-  idPartida: number = 0;
+  idPartida: number;
   tableroImg!: string;
 
   ngOnInit(): void {
@@ -54,7 +54,6 @@ export class TableroComponent implements OnInit {
     })
     setTimeout(()=> {this.cargarCartas(this.resultado)},40);
     setTimeout(()=> {this.calcularPuntos(false)},40);
-
 
     this.partidaIniciada = false;
   }

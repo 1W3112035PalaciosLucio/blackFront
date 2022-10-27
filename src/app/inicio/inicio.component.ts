@@ -13,6 +13,7 @@ export class InicioComponent implements OnInit {
 
   videoUrl: string;
   email:string = "";
+
   usuario = {} as Usuario;
   constructor(private router: Router, private log: LoginService, private route:ActivatedRoute) {
     this.videoUrl = "https://res.cloudinary.com/dfyevp7g4/video/upload/v1665238886/blackjack/video/menuVideo.mp4"

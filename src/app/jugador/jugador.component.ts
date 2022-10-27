@@ -21,14 +21,18 @@ export class JugadorComponent implements OnInit {
   puntosJugador = 0;
   plantarme =true;
 
+
   @Input() idPartida:number;
   @Output() onPedirCarta = new EventEmitter<Carta[]>();
   @Output() onPLantarse = new EventEmitter();
   @Output() onPuntosjugador =  new EventEmitter();
 
   ngOnInit(): void {
-   setTimeout(()=> {this.iniciarJugador()},10);
+    setTimeout(()=> {this.iniciarJugador()},10);
   }
+
+
+
   
    inputOptions = {
       '1 ': '1',
@@ -113,7 +117,7 @@ export class JugadorComponent implements OnInit {
     cartas.forEach(element => {
       var carta = new Carta(element.id,element.valor,element.palo);
       this.cartasJugador.push(carta);
-      this.cargarDetalle(this.idPartida,element.id)
+      this.cargarDetalle(this.idPartida,carta.id)
     });
     this.onPedirCarta.emit(this.cartasJugador);
   }

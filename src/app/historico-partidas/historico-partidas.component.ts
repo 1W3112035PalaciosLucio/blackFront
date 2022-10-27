@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Partida } from '../Interfaces/Partida';
 import { Usuario } from '../Interfaces/Usuario';
 import { CartasService } from '../Servicios/cartas.service';
@@ -13,9 +13,10 @@ import { LoginService } from '../Servicios/login.service';
 export class HistoricoPartidasComponent implements OnInit {
 
   email:string;
+  reanudar: boolean = true;
   usuario = {} as Usuario;
   partidas: Partida [] = [];
-  constructor(private servicioLog:LoginService, private route:ActivatedRoute, private servicioCar:CartasService) { 
+  constructor(private servicioLog:LoginService, private route:ActivatedRoute, private servicioCar:CartasService, private router:Router) { 
     this.email = route.snapshot.params["email"];
     this.getJugador();
   }
@@ -37,4 +38,7 @@ export class HistoricoPartidasComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ReanudarPartida(id:number){
+    this.router.navigateByUrl("/reanudar/"+id+"/"+this.usuario.email)
+  }
 }
