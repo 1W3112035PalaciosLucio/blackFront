@@ -16,7 +16,9 @@ import { LoginService } from './Servicios/login.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RegistroComponent } from './registro/registro.component';
 import { HistoricoPartidasComponent } from './historico-partidas/historico-partidas.component';
-import { PartidaReanudadaComponent } from './partida-reanudada/partida-reanudada.component'
+import { PartidaReanudadaComponent } from './partida-reanudada/partida-reanudada.component';
+import { ReportesComponent } from './reportes/reportes.component'
+import { NgChartsModule } from 'ng2-charts';
 
 
 export function tokenGetter(){
@@ -35,6 +37,7 @@ export function tokenGetter(){
     RegistroComponent,
     HistoricoPartidasComponent,
     PartidaReanudadaComponent,
+    ReportesComponent,
 
   ],
   imports: [
@@ -49,7 +52,8 @@ export function tokenGetter(){
          allowedDomains : ['localhost:5001'],
          disallowedRoutes : ['localhost:5001/api/Login/Login']
       }
-   })
+   }),
+   NgChartsModule
   ],
   providers: [CartasService, LoginService],
   bootstrap: [AppComponent]

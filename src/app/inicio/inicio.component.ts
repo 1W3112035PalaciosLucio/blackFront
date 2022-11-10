@@ -62,4 +62,8 @@ export class InicioComponent implements OnInit {
   usuarioLog() {
     return this.log.usuarioLogueado();
   }
+
+  Reportes() {
+    this.router.navigateByUrl("/reportes/"+this.usuario.email)
+  }
 }

@@ -21,6 +21,8 @@
     "@auth0/angular-jwt": "^5.1.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap-icons": "^1.9.1",
+    "chart.js": "^3.9.1",
+    "ng2-charts": "^3.1.2",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.1",
     "tslib": "^2.3.0",
