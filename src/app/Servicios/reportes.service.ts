@@ -14,14 +14,15 @@ export class ReportesService {
 
   constructor(private http: HttpClient) { }
 
-  reporte1(): Observable<any> {
-    return this.http.get(this.url + "/IndiceVictoriasCrupier")
+  reporte1(idUsuario: number): Observable<any> {
+    console.log(idUsuario)
+    return this.http.get(`${this.url}/IndiceVictoriasCrupier/${idUsuario}`)
   }
   reporte2(idUsuario: number): Observable<any> {
-    console.log(idUsuario);
+    // console.log(idUsuario);
     return this.http.get(`${this.url}/CantidadJuegosPorDia/${idUsuario}`)
   }
-  reporte3(idUsuario:number): Observable<any> {
+  reporte3(idUsuario: number): Observable<any> {
     return this.http.get(`${this.url}/promedioJugadas21/${idUsuario}`)
   }
 }

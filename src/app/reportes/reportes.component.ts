@@ -38,31 +38,29 @@ export class ReportesComponent implements OnInit, OnDestroy {
   valorReporte3: number[] = [];
   pie: ChartData<'pie', number[]>
 
+  datos1: ChartData<'line', number[]>
+  reporte1:number[]=[];
+  retorno: number[] = [];
+  pr:number;
+
 
 
   private subscription = new Subscription();
 
-  constructor(private servicioLog: LoginService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private servicioCar: CartasService,
-    private reporte: ReportesService,
-  ) {
+  constructor(private servicioLog: LoginService, private route: ActivatedRoute, private router: Router, private servicioCar: CartasService,
+    private reporte: ReportesService) {
     this.email = route.snapshot.params["email"];
-
     this.getJugador();
   }
 
   ngOnInit(): void {
-
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+  ///Reporte 2
   CargarGrafico() {
-
     this.datos = {
       labels: this.fechas,
       datasets: [{
@@ -98,7 +96,13 @@ export class ReportesComponent implements OnInit, OnDestroy {
 
   getJugador() {
     this.servicioLog.getUserByEmail(this.email).subscribe({
-      next: (resultado) => { this.usuario = resultado, this.GetStats(), this.cargarPartidas(resultado.id), this.CargarGrafico(), this.cargarIndiceBlackJack(); },
+      next: (resultado) => { this.usuario = resultado, this.GetStats(),
+        this.cargarPartidas(resultado.id),
+        this.CargarGrafico(),
+        this.cargarIndiceBlackJack(),
+        //this.CargarGrafico1(),
+        this.CargarIndice();
+      },
       error: (error) => { console.log(error) }
     })
   }
@@ -114,7 +118,83 @@ export class ReportesComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl("/inicio/" + this.usuario.email);
   }
 
+  ///Grafico 3
   public barChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+
+      }
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      x: {},
+
+      'y-axis-1': {
+        position: 'left',
+        grid: {
+          color: '#ffffff',
+        },
+        ticks: {
+          color: '#ffffff'
+        }
+      }
+    },
+  }
+
+  cargarIndiceBlackJack() {
+    this.reporte.reporte3(this.usuario.id).subscribe({
+      next: (resultado) => {
+        this.reporte3 = resultado, console.log(this.reporte3)
+          , this.valorReporte3.push(this.reporte3.promedioCroupier);
+        this.valorReporte3.push(this.reporte3.promedioJugadores), this.CargarGrafico3(), console.log(this.valorReporte3);
+      },
+      error: (error) => { console.log(error) }
+    })
+
+
+  }
+
+  public pieChartData: ChartData<'pie', number[], string | string[]>;
+  public pieChartType: ChartType = 'pie';
+
+  CargarGrafico3() {
+    this.pieChartData = {
+
+      labels: ['Porcentaje del croupier', 'Porcentaje del jugador'],
+      datasets: [{
+        data: this.valorReporte3
+
+      }]
+
+    };
+  }
+
+  ///Grafico 1
+  CargarIndice() {
+    this.reporte.reporte1(this.usuario.id).subscribe({
+      next: (resultado)=>{
+        this.pr = resultado,
+        this.CargarGrafico1()
+      },
+      error: (error) => { console.log(error) }
+    });  
+  }
+
+  CargarGrafico1() {
+    console.log(this.reporte1)
+    this.datos1 = {
+      labels:['Indice'],
+      datasets: [{
+        data: [this.pr],
+        label: "Indice de victorias",
+        borderColor: "#2c5672",
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        backgroundColor: "#2c5672"
+      }]
+    };
+  }
+  public barChartOptions1: ChartConfiguration['options'] = {
     elements: {
       bar: {
 
@@ -134,37 +214,5 @@ export class ReportesComponent implements OnInit, OnDestroy {
         }
       }
     },
-
-
   }
-
-  cargarIndiceBlackJack() {
-    this.reporte.reporte3(this.usuario.id).subscribe({
-      next: (resultado) => { this.reporte3 = resultado, console.log(this.reporte3)
-      ,  this.valorReporte3.push(this.reporte3.promedioCroupier);
-      this.valorReporte3.push(this.reporte3.promedioJugadores), this.CargarGrafico3(),console.log(this.valorReporte3);
-     },
-      error: (error) => { console.log(error) }
-    })
-    // this.valorReporte3.push(this.reporte3.promedioCroupier);
-    // this.valorReporte3.push(this.reporte3.promedioJugadores);
-    
-  }
-
-  public pieChartData: ChartData<'pie', number[], string | string[]> ;
-
-  public pieChartType: ChartType = 'pie';
-
-  CargarGrafico3() {
-   this.pieChartData = {
-    
-    labels: ['Porcentaje del croupier', 'Porcentaje del jugador'],
-    datasets: [{
-      data: this.valorReporte3
-     
-    }]
-    
-  };
-  }
-  
 }
