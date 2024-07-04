@@ -49,7 +49,7 @@ export class LoginService {
     this.decodedToken = null;
     this.currentUser = null;
   }
-  //Se viene BJ
+
   getUserByEmail(email:string):Observable<any>{
     return this.http.get("https://localhost:5001/api/Usuario/getUserEmail/"+email)
   }
